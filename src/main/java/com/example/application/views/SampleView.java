@@ -6,6 +6,9 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.component.datepicker.DatePicker;
+import com.vaadin.flow.component.textfield.EmailField;
+import com.vaadin.flow.component.textfield.TextArea;
 
 /**
  * A view to try the DnD builder on: load it in the builder, change it and save.
@@ -23,7 +26,11 @@ public class SampleView extends VerticalLayout {
      */
     private void _initLayout() {
         TextField textField1 = new TextField("Name");
-        TextField textField2 = new TextField("Email");
+        DatePicker datePicker1 = new DatePicker("Date Picker");
+        TextArea textArea1 = new TextArea("Text Area");
+        EmailField emailField1 = new EmailField("Email Field");
+        TextField textField2 = new TextField("Text Field");
+        TextField textField3 = new TextField("Email");
         HorizontalLayout horizontalLayout1 = new HorizontalLayout();
         Button button1 = new Button("Save");
         Button button2 = new Button("Cancel");
@@ -31,6 +38,6 @@ public class SampleView extends VerticalLayout {
         Grid<String> grid1 = new Grid<>();
         grid1.addColumn(item -> "").setHeader("Name");
         grid1.addColumn(item -> "").setHeader("Email");
-        add(textField1, textField2, horizontalLayout1, grid1);
+        add(textField1, datePicker1, textArea1, emailField1, textField2, textField3, horizontalLayout1, grid1);
     }
 }

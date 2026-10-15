@@ -45,7 +45,8 @@ pre {
 }
 
 .drop-target {
-    margin: 0.5em;
+    --drop-target-margin: 0.5em;
+    margin: var(--drop-target-margin);
     border: var(--drop-target-border);
     background-color: var(--drop-target-bg);
 }
@@ -58,6 +59,9 @@ pre {
 
 .drop-target.has-components {
     --drop-target-border: 2px solid lightgray;
+    /* a full-width layout plus its margin would scroll the canvas sideways */
+    box-sizing: border-box;
+    max-width: calc(100% - 2 * var(--drop-target-margin));
 }
 
 /* an empty container would be invisible (its drop zones hide outside a drag), so it says what it is for */

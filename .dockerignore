@@ -1,0 +1,9 @@
+# keep the build context small; the image builds the frontend and the jar itself
+target/
+node_modules/
+src/main/frontend/generated/
+.git/
+.claude/
+.devcontainer/
+.idea/
+.vaadin/
