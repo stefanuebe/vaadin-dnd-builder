@@ -92,10 +92,11 @@ public class DndBuilderView extends SplitLayout implements BeforeEnterObserver {
     }
 
     /**
-     * The query parameters of the builder URL that shows the given view.
+     * The query parameters of the builder URL that shows the given view. The view is named by its class name, not its
+     * path: SideNavItem encodes query parameters twice (Vaadin 25.3.2), so a path's slashes came back as "%2F".
      */
     public static QueryParameters queryParametersFor(Path file) {
-        return QueryParameters.of(VIEW_PARAMETER, file.toString());
+        return QueryParameters.of(VIEW_PARAMETER, ViewSourceFiles.classNameOf(file));
     }
 
     @Override
@@ -107,7 +108,7 @@ public class DndBuilderView extends SplitLayout implements BeforeEnterObserver {
 
         // the parameter comes from the URL: only files the builder itself offers may be read
         viewSourceFiles.findViews(placeholderFactory::isContainer).stream()
-                .filter(file -> file.toString().equals(requestedView.get()))
+                .filter(file -> ViewSourceFiles.classNameOf(file).equals(requestedView.get()))
                 .findFirst()
                 .ifPresentOrElse(this::loadView, () -> showError("Unknown view " + requestedView.get()));
     }

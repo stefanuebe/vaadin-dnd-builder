@@ -38,4 +38,12 @@ class ViewSourceFilesTest {
         }
     }
 
+    /** The builder URL names a view by its class name, which needs no encoding. */
+    @Test
+    void classNameOf_isTheViewsFullyQualifiedName() {
+        Path file = Path.of("src", "main", "java", "com", "example", "application", "views", "SampleView.java");
+
+        assertEquals("com.example.application.views.SampleView", ViewSourceFiles.classNameOf(file));
+    }
+
 }

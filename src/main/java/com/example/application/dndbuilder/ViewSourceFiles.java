@@ -27,6 +27,15 @@ public class ViewSourceFiles {
     private final ViewSourceCodec codec = new ViewSourceCodec();
 
     /**
+     * The fully qualified class name of the given view source, e.g. {@code com.example.application.views.SampleView}.
+     */
+    public static String classNameOf(Path file) {
+        String name = SOURCE_ROOT.relativize(file).toString().replace(file.getFileSystem().getSeparator(), ".");
+
+        return name.substring(0, name.length() - ".java".length());
+    }
+
+    /**
      * Finds the {@code @Route} views whose super type the designer can show as its root.
      */
     public List<Path> findViews(Predicate<Class<? extends Component>> isDesignableRoot) {
